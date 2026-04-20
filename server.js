@@ -8,18 +8,26 @@ const path = require('path');
 
 const app = express();
 
-const publicPath = path.join(__dirname, 'public');
+let publicPath = path.join(__dirname, 'public');
+
+if (!require('fs').existsSync(publicPath)) {
+  publicPath = path.join(__dirname, '..', 'public');
+}
+
 console.log('Public path:', publicPath);
+console.log('Public path exists:', require('fs').existsSync(publicPath));
 
 app.use(express.json());
 app.use(cors());
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'), (err) => {
+  const indexPath = path.join(publicPath, 'index.html');
+  console.log('Serving:', indexPath);
+  res.sendFile(indexPath, (err) => {
     if (err) {
-      console.error('Error sending file:', err);
-      res.status(500).send('Server error');
+      console.error('Error:', err);
+      res.status(500).send('Error loading page');
     }
   });
 });
