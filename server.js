@@ -11,7 +11,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'portfolio-secret-key-2024';
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.MONGO_URI ? decodeURIComponent(process.env.MONGO_URI) : null;
 
 console.log('__dirname:', __dirname);
 console.log('process.cwd():', process.cwd());
