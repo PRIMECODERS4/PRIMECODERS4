@@ -6,7 +6,7 @@ services:
     startCommand: npm start
     envVars:
       - key: MONGO_URI
-        value: mongodb+srv://nschorsingh1_db_user:Naman@@1234@@cluster0.x7qhvoi.mongodb.net/?appName=Cluster0
+        value: mongodb+srv://nschorsingh1_db_user:Naman%40%401234%40%40cluster0.x7qhvoi.mongodb.net/?appName=Cluster0
       - key: JWT_SECRET
         value: portfolio-secret-key-2024-secure
       - key: PORT
