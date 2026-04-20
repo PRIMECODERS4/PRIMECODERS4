@@ -8,12 +8,15 @@ const path = require('path');
 
 const app = express();
 
+const publicPath = path.join(__dirname, 'public');
+console.log('Public path:', publicPath);
+
 app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'), (err) => {
+  res.sendFile(path.join(publicPath, 'index.html'), (err) => {
     if (err) {
       console.error('Error sending file:', err);
       res.status(500).send('Server error');

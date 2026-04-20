@@ -11,4 +11,3 @@ services:
         value: portfolio-secret-key-2024-secure
       - key: PORT
         value: 3000
-    rootDir: .
