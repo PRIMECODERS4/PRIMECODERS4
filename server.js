@@ -13,26 +13,29 @@ const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'portfolio-secret-key-2024';
 const MONGO_URI = process.env.MONGO_URI;
 
-let publicPath = __dirname;
-const maxDepth = 10;
-let depth = 0;
+const possiblePaths = [
+  path.join(__dirname, 'public'),
+  path.join(__dirname, '..', 'public'),
+  path.join(__dirname, '..', '..', 'public'),
+  path.join(process.cwd(), 'public'),
+  path.join(__dirname, 'src', 'public')
+];
 
-while (depth < maxDepth) {
-  const testPath = path.join(publicPath, 'public', 'index.html');
-  if (fs.existsSync(testPath)) {
-    publicPath = path.join(publicPath, 'public');
+let publicPath = null;
+for (const p of possiblePaths) {
+  if (fs.existsSync(p) && fs.existsSync(path.join(p, 'index.html'))) {
+    publicPath = p;
     break;
   }
-  publicPath = path.dirname(publicPath);
-  depth++;
 }
 
-if (!fs.existsSync(path.join(publicPath, 'index.html'))) {
+if (!publicPath) {
+  console.error('Could not find public folder. Tried:', possiblePaths);
   publicPath = path.join(__dirname, 'public');
 }
 
-console.log('Public path:', publicPath);
-console.log('Files:', fs.readdirSync(publicPath));
+console.log('Resolved public path:', publicPath);
+console.log('Files in public:', fs.readdirSync(publicPath));
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
