@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="auth-box">
+      <div class="logo-section">
+        <div class="logo">P</div>
+        <h1>Portfolio</h1>
+        <p class="tagline">Your personal showcase</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Sign In</button>
+        <button class="tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label for="loginUsername">Username</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-primary">Enter Portfolio</button>
+        <p class="error-message" id="loginError"></p>
+      </form>
+
+      <form id="signupForm" class="auth-form hidden">
+        <div class="form-group">
+          <label for="signupUsername">Username</label>
+          <input type="text" id="signupUsername" name="username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" name="password" required autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label for="signupConfirm">Confirm Password</label>
+          <input type="password" id="signupConfirm" name="confirmPassword" required autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn-primary">Create Account</button>
+        <p class="error-message" id="signupError"></p>
+        <p class="success-message" id="signupSuccess"></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="portfolioPage" class="hidden">
+    <nav class="navbar">
+      <div class="nav-brand">Portfolio</div>
+      <div class="nav-user">
+        <span id="userDisplay"></span>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <main class="portfolio">
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Welcome to My Portfolio</h2>
+          <p>Creative Developer & Designer</p>
+        </div>
+      </section>
+
+      <section class="about">
+        <h3>About Me</h3>
+        <p>Passionate developer with expertise in building modern web applications. I create elegant solutions to complex problems, focusing on user experience and clean code architecture.</p>
+      </section>
+
+      <section class="skills">
+        <h3>Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <span class="skill-icon">JS</span>
+            <span class="skill-name">JavaScript</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">TS</span>
+            <span class="skill-name">TypeScript</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">RE</span>
+            <span class="skill-name">React</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">NO</span>
+            <span class="skill-name">Node.js</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">MG</span>
+            <span class="skill-name">MongoDB</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">DU</span>
+            <span class="skill-name">Docker</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects">
+        <h3>Projects</h3>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">01</div>
+            <div class="project-info">
+              <h4>E-Commerce Platform</h4>
+              <p>Full-stack shopping solution with payment integration</p>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">02</div>
+            <div class="project-info">
+              <h4>Task Manager</h4>
+              <p>Collaborative project management tool</p>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">03</div>
+            <div class="project-info">
+              <h4>Social Dashboard</h4>
+              <p>Analytics dashboard for social media metrics</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact">
+        <h3>Get In Touch</h3>
+        <p>Interested in working together? Let's connect!</p>
+        <a href="mailto:hello@example.com" class="btn-contact">Send Message</a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2024 Portfolio. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
