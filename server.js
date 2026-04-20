@@ -4,39 +4,55 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+const JWT_SECRET = process.env.JWT_SECRET || 'portfolio-secret-key-2024';
+const MONGO_URI = process.env.MONGO_URI;
+
 let publicPath = __dirname;
-while (!fs.existsSync(path.join(publicPath, 'public')) && publicPath.length > 3) {
+const maxDepth = 10;
+let depth = 0;
+
+while (depth < maxDepth) {
+  const testPath = path.join(publicPath, 'public', 'index.html');
+  if (fs.existsSync(testPath)) {
+    publicPath = path.join(publicPath, 'public');
+    break;
+  }
   publicPath = path.dirname(publicPath);
+  depth++;
 }
-publicPath = path.join(publicPath, 'public');
+
+if (!fs.existsSync(path.join(publicPath, 'index.html'))) {
+  publicPath = path.join(__dirname, 'public');
+}
 
 console.log('Public path:', publicPath);
 console.log('Files:', fs.readdirSync(publicPath));
 
-app.use(express.json());
-app.use(cors());
-app.use(express.static(publicPath));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now }
 });
 
 const User = mongoose.model('User', userSchema);
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
+if (MONGO_URI) {
+  mongoose.connect(MONGO_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
+} else {
+  console.error('MONGO_URI not defined');
+}
+
+app.use(express.json());
+app.use(cors());
+app.use(express.static(publicPath));
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -105,7 +121,7 @@ app.get('/api/verify', authenticateToken, (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
