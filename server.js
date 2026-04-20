@@ -4,32 +4,32 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 
-let publicPath = path.join(__dirname, 'public');
-
-if (!require('fs').existsSync(publicPath)) {
-  publicPath = path.join(__dirname, '..', 'public');
+let publicPath = __dirname;
+while (!fs.existsSync(path.join(publicPath, 'public')) && publicPath.length > 3) {
+  publicPath = path.dirname(publicPath);
 }
+publicPath = path.join(publicPath, 'public');
 
 console.log('Public path:', publicPath);
-console.log('Public path exists:', require('fs').existsSync(publicPath));
+console.log('Files:', fs.readdirSync(publicPath));
 
 app.use(express.json());
 app.use(cors());
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
-  const indexPath = path.join(publicPath, 'index.html');
-  console.log('Serving:', indexPath);
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).send('Error loading page');
-    }
-  });
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 const User = mongoose.model('User', userSchema);
