@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naman Kumar — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Particle canvas -->
+  <canvas id="particles"></canvas>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-logo">&lt;NK /&gt;</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting reveal">Hello, I'm</p>
+      <h1 class="hero-name reveal">Naman Kumar</h1>
+      <div class="hero-title-wrapper reveal">
+        <span class="hero-title-static">I'm a&nbsp;</span>
+        <span class="hero-title-typed" id="typedText"></span>
+        <span class="typed-cursor">|</span>
+      </div>
+      <p class="hero-desc reveal">
+        SDET &amp; QA Automation Engineer building reliable CI/CD pipelines,<br />
+        containerized deployments, and automation-first solutions.
+      </p>
+      <div class="hero-buttons reveal">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+      <div class="hero-socials reveal">
+        <a href="https://linkedin.com/in/ipsnaman95" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/PRIMECODERS4" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:nk232230@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <span class="section-number">01.</span> About Me
+      </h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm an entry-level <strong>SDET / QA Automation</strong>-focused engineer with hands-on internship 
+            experience in Python scripting, SQL validation, and CI/CD automation using GitHub Actions.
+          </p>
+          <p>
+            I've built end-to-end release workflows covering lint, test, build, push, and deploy stages, 
+            and deployed containerized applications using <strong>Docker</strong> and <strong>Kubernetes</strong> (AKS/EKS).
+          </p>
+          <p>
+            With a strong troubleshooting and RCA mindset, combined with exposure to security testing concepts 
+            from a cybersecurity internship, I'm comfortable collaborating across teams to improve reliability, 
+            test coverage, and delivery quality.
+          </p>
+        </div>
+        <div class="about-card reveal">
+          <div class="about-card-inner">
+            <div class="about-info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Jaipur, Rajasthan, India</span>
+            </div>
+            <div class="about-info-item">
+              <i class="fas fa-graduation-cap"></i>
+              <span>B.Tech CS — CGPA 8.2/10</span>
+            </div>
+            <div class="about-info-item">
+              <i class="fas fa-briefcase"></i>
+              <span>SDET / QA Automation</span>
+            </div>
+            <div class="about-info-item">
+              <i class="fas fa-code"></i>
+              <span>Python, SQL, Bash, Docker, K8s</span>
+            </div>
+            <div class="about-stats">
+              <div class="stat">
+                <span class="stat-number" data-target="2">0</span>
+                <span class="stat-label">Internships</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" data-target="3">0</span>
+                <span class="stat-label">Certifications</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" data-target="5">0</span>
+                <span class="stat-label">Cloud Platforms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <span class="section-number">02.</span> Technical Skills
+      </h2>
+      <div class="skills-grid">
+        <!-- Languages -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fas fa-code"></i>
+            <h3>Languages &amp; Scripting</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Bash (Linux)</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+        <!-- SDET/QA -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fas fa-bug"></i>
+            <h3>SDET / QA</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Test Planning</span>
+            <span class="skill-tag">API Validation</span>
+            <span class="skill-tag">SQL/DB Validation</span>
+            <span class="skill-tag">Debugging / RCA</span>
+            <span class="skill-tag">Edge-case Analysis</span>
+          </div>
+        </div>
+        <!-- CI/CD -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fas fa-sync-alt"></i>
+            <h3>CI/CD &amp; SCM</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">CI/CD Pipelines</span>
+          </div>
+        </div>
+        <!-- Containers -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fab fa-docker"></i>
+            <h3>Containers &amp; K8s</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">kubectl</span>
+            <span class="skill-tag">Helm</span>
+            <span class="skill-tag">Argo CD</span>
+            <span class="skill-tag">AKS / EKS</span>
+          </div>
+        </div>
+        <!-- Registries -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fas fa-box"></i>
+            <h3>Container Registries</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker Hub</span>
+            <span class="skill-tag">GHCR</span>
+            <span class="skill-tag">AWS ECR</span>
+            <span class="skill-tag">Azure ACR</span>
+          </div>
+        </div>
+        <!-- Cloud -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fas fa-cloud"></i>
+            <h3>Cloud Platforms</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+          </div>
+        </div>
+        <!-- Observability -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fas fa-chart-line"></i>
+            <h3>Observability</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Log Monitoring</span>
+            <span class="skill-tag">Dashboarding</span>
+            <span class="skill-tag">Prometheus</span>
+            <span class="skill-tag">Grafana</span>
+            <span class="skill-tag">Splunk</span>
+          </div>
+        </div>
+        <!-- Security -->
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Security</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Vulnerability Assessment</span>
+            <span class="skill-tag">Secure Engineering</span>
+            <span class="skill-tag">TLS/SSL</span>
+            <span class="skill-tag">DNS Fundamentals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section" id="experience">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <span class="section-number">03.</span> Experience
+      </h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Data Engineering Intern</h3>
+              <span class="timeline-company">Stunvalley Technology <span class="badge">Remote</span></span>
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> Jun 2024 &mdash; Dec 2024</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Developed and optimized Python automation for ETL workflows to improve repeatability and reliability of data runs.</li>
+              <li>Implemented data validation and cleansing checks (quality gates) to reduce pipeline failures and improve output accuracy.</li>
+              <li>Built Power BI dashboards for operational reporting and stakeholder decision support.</li>
+              <li>Debugged pipeline and integration issues using structured troubleshooting and root-cause analysis (RCA).</li>
+              <li>Collaborated with stakeholders to gather requirements, deliver updates on time, and maintain clear documentation.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Cybersecurity Intern</h3>
+              <span class="timeline-company">Vault of Codes Pvt. Ltd. <span class="badge">Remote</span></span>
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> Oct 2024 &mdash; Jan 2025</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Performed security testing and analysis exercises including DDoS simulation, session hijacking scenarios, and network security checks.</li>
+              <li>Documented findings and suggested mitigation approaches aligned with secure engineering practices and policies.</li>
+              <li>Strengthened understanding of risks relevant to QA/DevOps delivery: access/session risks, exposure points, and secure operations basics.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <span class="section-number">04.</span> Projects
+      </h2>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card reveal">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <i class="fas fa-folder-open project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/PRIMECODERS4" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-title">CI/CD Release Enablement Pipeline</h3>
+          <p class="project-desc">
+            End-to-end GitHub Actions workflows automating lint, test, build, containerize, push image, and deploy stages. 
+            Published container images to Docker Hub, GHCR, AWS ECR, and Azure ACR for flexible multi-environment promotion.
+          </p>
+          <div class="project-tech">
+            <span>GitHub Actions</span>
+            <span>Docker</span>
+            <span>Kubernetes</span>
+            <span>AKS/EKS</span>
+            <span>Helm</span>
+            <span>Argo CD</span>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="project-card reveal">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <i class="fas fa-folder-open project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/PRIMECODERS4/PRIMECODERS4-SLM-LLM-Realtime-Log-Threat-Detector" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-title">Real-time Log Analyzer</h3>
+          <p class="project-desc">
+            A real-time log ingestion, monitoring, and anomaly detection tool with sliding-window anomaly scoring. 
+            Integrated Hugging Face LLM (Qwen2.5-1.5B-Instruct) for log interpretation and threat-signal extraction.
+          </p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>FastAPI</span>
+            <span>Streamlit</span>
+            <span>AI/ML</span>
+            <span>Hugging Face</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <span class="section-number">05.</span> Education &amp; Certifications
+      </h2>
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i class="fas fa-university"></i></div>
+          <h3>Vivekananda Global University</h3>
+          <p class="edu-location">Jaipur, Rajasthan</p>
+          <p class="edu-degree">B.Tech (Computer Science)</p>
+          <p class="edu-date">2022 &mdash; 2026 (Expected)</p>
+          <div class="edu-stats">
+            <div class="edu-stat">
+              <span class="edu-stat-value">8.2</span>
+              <span class="edu-stat-label">CGPA / 10</span>
+            </div>
+            <div class="edu-stat">
+              <span class="edu-stat-value">80.8%</span>
+              <span class="edu-stat-label">12th Grade</span>
+            </div>
+            <div class="edu-stat">
+              <span class="edu-stat-value">77.8%</span>
+              <span class="edu-stat-label">10th Grade</span>
+            </div>
+          </div>
+        </div>
+        <div class="cert-list reveal">
+          <h3 class="cert-heading"><i class="fas fa-certificate"></i> Certifications</h3>
+          <div class="cert-item">
+            <div class="cert-dot"></div>
+            <div>
+              <h4>Data Engineering &amp; Python Development</h4>
+              <p>Stunvalley Technology</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-dot"></div>
+            <div>
+              <h4>Ethical Hacking &amp; Cybersecurity</h4>
+              <p>Vault of Codes Pvt. Ltd.</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-dot"></div>
+            <div>
+              <h4>Cloud / DevOps Engineering</h4>
+              <p>In Progress (Self-learning)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <span class="section-number">06.</span> Get In Touch
+      </h2>
+      <div class="contact-content reveal">
+        <p class="contact-desc">
+          I'm currently looking for new opportunities as an SDET / QA Automation Engineer.
+          Whether you have a question or just want to say hi, feel free to reach out!
+        </p>
+        <div class="contact-cards">
+          <a href="mailto:nk232230@gmail.com" class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <span>nk232230@gmail.com</span>
+          </a>
+          <a href="tel:+918406077032" class="contact-card">
+            <i class="fas fa-phone"></i>
+            <span>+91-8406077032</span>
+          </a>
+          <a href="https://linkedin.com/in/ipsnaman95" target="_blank" class="contact-card">
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/PRIMECODERS4" target="_blank" class="contact-card">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+        </div>
+        <a href="mailto:nk232230@gmail.com" class="btn btn-primary btn-lg">Say Hello <i class="fas fa-paper-plane"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Designed &amp; Built by <strong>Naman Kumar</strong></p>
+    <p class="footer-sub">&copy; 2026 &mdash; All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
