@@ -96,16 +96,17 @@ def compile_prompt(prompt: str) -> PipelineResult:
 
     # ── Validation + Repair loop ─────────────────────────────────────────
     total_retries = 0
+    final_v_issues: List[ValidationIssue] = []
     for cycle in range(MAX_REPAIR_CYCLES):
-        v_issues = validate_config(app_config)
-        errors = [i for i in v_issues if i.severity == "error"]
-        all_issues.extend(v_issues)
+        final_v_issues = validate_config(app_config)
+        errors = [i for i in final_v_issues if i.severity == "error"]
         if not errors:
             break
         logger.info("Validation cycle %d: %d errors – repairing", cycle + 1, len(errors))
         app_config, repair_issues = repair_config(app_config, errors)
         all_issues.extend(repair_issues)
         total_retries += 1
+    all_issues.extend(final_v_issues)
 
     # ── Code Generation ──────────────────────────────────────────────────
     generated = generate_code(app_config)

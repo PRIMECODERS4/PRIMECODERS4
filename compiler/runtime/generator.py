@@ -99,6 +99,8 @@ def _gen_models(config: AppConfig) -> GeneratedCode:
                     parts.append("default=datetime.utcnow")
                 elif col.default in ("true", "false"):
                     parts.append(f"default={col.default.capitalize()}")
+                elif col.column_type in (ColumnType.INTEGER, ColumnType.BIGINT, ColumnType.FLOAT, ColumnType.DECIMAL):
+                    parts.append(f"default={col.default}")
                 else:
                     parts.append(f"default='{col.default}'")
             if col.foreign_key:
