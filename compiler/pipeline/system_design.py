@@ -6,6 +6,7 @@ attributes & relationships, pages, user flows, and role definitions.
 
 from __future__ import annotations
 
+import re
 from typing import Dict, List, Set
 
 from ..llm.client import llm_client
@@ -165,6 +166,18 @@ _COMMON_RELATIONS: Dict[str, List[tuple[str, RelationType]]] = {
 }
 
 
+def _slug(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
+
+
+def _plural(name: str) -> str:
+    if name.endswith("s"):
+        return name
+    if name.endswith("y") and not name.endswith("ey"):
+        return name[:-1] + "ies"
+    return name + "s"
+
+
 def _build_entities(intent: Intent) -> List[EntityDesign]:
     entities: List[EntityDesign] = []
     entity_names: Set[str] = {e.name for e in intent.entities}
@@ -220,7 +233,7 @@ def _build_pages(intent: Intent, entity_names: Set[str]) -> List[PageDesign]:
     for name in sorted(entity_names):
         if name in ("User", "Dashboard", "Role", "Notification"):
             continue
-        slug = name.lower() + "s"
+        slug = _plural(_slug(name))
         pages.append(PageDesign(name=f"{name} List", route=f"/{slug}", page_type=PageType.LIST, entity=name, access_roles=role_names))
         pages.append(PageDesign(name=f"{name} Detail", route=f"/{slug}/{{id}}", page_type=PageType.DETAIL, entity=name, access_roles=role_names))
         pages.append(PageDesign(name=f"Create {name}", route=f"/{slug}/new", page_type=PageType.FORM, entity=name, access_roles=role_names))

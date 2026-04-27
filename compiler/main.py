@@ -56,7 +56,7 @@ async def root():
 
 
 @app.post("/api/compile")
-async def compile_endpoint(req: CompileRequest):
+def compile_endpoint(req: CompileRequest):
     """Run the full compilation pipeline on a natural-language prompt."""
     if not req.prompt or not req.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt cannot be empty")
@@ -70,7 +70,7 @@ async def compile_endpoint(req: CompileRequest):
 
 
 @app.post("/api/evaluate")
-async def evaluate_endpoint(req: EvalRequest):
+def evaluate_endpoint(req: EvalRequest):
     """Run the evaluation framework on test prompts."""
     if req.category == "real":
         prompts = REAL_PROMPTS

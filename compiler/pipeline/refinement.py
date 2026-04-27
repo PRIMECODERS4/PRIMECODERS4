@@ -88,7 +88,7 @@ def _entity_to_table(entity: str) -> str:
     name = entity.lower()
     if name.endswith("s"):
         return name
-    if name.endswith("y"):
+    if name.endswith("y") and not name.endswith("ey"):
         return name[:-1] + "ies"
     return name + "s"
 
